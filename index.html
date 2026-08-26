@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AK.STUDIO | AI-Based Film Company</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:white;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,5,5,0.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #222;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff2b2b;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#ff2b2b;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 20px 70px;
+
+    background:
+    radial-gradient(circle at center,#3b0b0b 0%,#100404 25%,#050505 65%);
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.badge{
+    display:inline-block;
+    border:1px solid #ff3030;
+    color:#ff4b4b;
+    padding:9px 20px;
+    border-radius:30px;
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(55px,12vw,115px);
+    letter-spacing:5px;
+    line-height:1;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#ff2b2b;
+}
+
+.hero h2{
+    font-size:clamp(22px,4vw,38px);
+    font-weight:normal;
+    color:#ddd;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#999;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.buttons{
+    margin-top:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    margin:7px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:#ff2525;
+    color:white;
+}
+
+.btn-secondary{
+    border:1px solid #777;
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* GENERAL SECTION */
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.section-title span{
+    color:#ff2b2b;
+}
+
+/* ABOUT */
+
+.about{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+}
+
+.about p{
+    color:#aaa;
+    font-size:18px;
+    line-height:1.9;
+}
+
+/* SERVICES */
+
+.services{
+    background:#0b0b0b;
+}
+
+.cards{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:22px;
+}
+
+.card{
+    background:#111;
+    border:1px solid #252525;
+    border-radius:16px;
+    padding:32px 25px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#ff2b2b;
+    box-shadow:0 10px 35px rgba(255,30,30,.12);
+}
+
+.card-icon{
+    font-size:35px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    color:#ff3b3b;
+    margin-bottom:12px;
+    font-size:21px;
+}
+
+.card p{
+    color:#999;
+    line-height:1.7;
+}
+
+/* VISION */
+
+.vision{
+    text-align:center;
+    background:
+    linear-gradient(135deg,#080808,#170505,#080808);
+}
+
+.vision-content{
+    max-width:800px;
+    margin:auto;
+}
+
+.vision p{
+    color:#aaa;
+    font-size:19px;
+    line-height:1.9;
+}
+
+.vision strong{
+    display:block;
+    color:#ff3030;
+    margin-top:25px;
+    font-size:20px;
+}
+
+/* CONTACT */
+
+.contact{
+    text-align:center;
+}
+
+.contact-box{
+    max-width:700px;
+    margin:auto;
+    background:#101010;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:40px 25px;
+}
+
+.contact-box h3{
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.contact-item{
+    margin:18px 0;
+}
+
+.contact-item span{
+    color:#ff3030;
+    font-weight:bold;
+}
+
+.contact-item a{
+    color:#ddd;
+    text-decoration:none;
+}
+
+.contact-item a:hover{
+    color:#ff3030;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid #222;
+    text-align:center;
+    padding:35px 20px;
+    background:#030303;
+}
+
+.footer-logo{
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.footer-logo span{
+    color:#ff2b2b;
+}
+
+.copyright{
+    color:#666;
+    font-size:14px;
+    margin-top:12px;
+}
+
+.creator{
+    color:#ff3030;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    nav{
+        padding:17px 5%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-left:18px;
+        padding-right:18px;
+    }
+
+    .hero h1{
+        letter-spacing:2px;
+    }
+
+    section{
+        padding:70px 6%;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .card{
+        padding:28px 22px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">
+AK<span>.</span>STUDIO
+</div>
+
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#vision">Vision</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="badge">
+INDIA'S FIRST AI-BASED FILM COMPANY
+</div>
+
+<h1>
+AK<span>.</span>STUDIO
+</h1>
+
+<h2>
+Where Artificial Intelligence Meets Cinema.
+</h2>
+
+<p>
+We are building the future of filmmaking using Artificial Intelligence,
+creativity, animation and cinematic storytelling.
+</p>
+
+<div class="buttons">
+
+<a href="#about" class="btn btn-primary">
+EXPLORE OUR VISION
+</a>
+
+<a href="#contact" class="btn btn-secondary">
+CONTACT US
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">
+About <span>AK Studio</span>
+</h2>
+
+<div class="about">
+
+<p>
+AK Studio is an AI-based film company focused on exploring the future
+of cinema. We combine Artificial Intelligence with human creativity
+to create films, animation, advertisements and powerful visual stories.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+
+<h2 class="section-title">
+What We <span>Create</span>
+</h2>
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="card-icon">🎬</div>
+
+<h3>AI Films</h3>
+
+<p>
+Original cinematic stories created using
+next-generation Artificial Intelligence technology.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🤖</div>
+
+<h3>AI Animation</h3>
+
+<p>
+Creative animated worlds, characters and
+cinematic experiences powered by AI.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">📢</div>
+
+<h3>AI Advertisements</h3>
+
+<p>
+Modern and creative advertisements designed
+for brands, businesses and creators.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">✨</div>
+
+<h3>Visual Storytelling</h3>
+
+<p>
+Transforming imagination and ideas into
+powerful visual experiences.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- VISION -->
+
+<section class="vision" id="vision">
+
+<h2 class="section-title">
+Our <span>Vision</span>
+</h2>
+
+<div class="vision-content">
+
+<p>
+The future of cinema will not be limited by cameras,
+studios or traditional production methods.
+
+At AK Studio, we believe Artificial Intelligence
+can help creators turn imagination into reality.
+</p>
+
+<strong>
+THIS IS JUST THE BEGINNING.
+</strong>
+
+</div>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h2 class="section-title">
+Contact <span>Us</span>
+</h2>
+
+<div class="contact-box">
+
+<h3>
+Let's Create Something Amazing.
+</h3>
+
+
+<div class="contact-item">
+
+<span>📞 Phone</span>
+<br>
+
+<a href="tel:9673306222">
+9673306222
+</a>
+
+</div>
+
+
+<div class="contact-item">
+
+<span>✉️ Email</span>
+<br>
+
+<a href="mailto:avadhootskpatil001@gmail.com">
+avadhootskpatil001@gmail.com
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-logo">
+AK<span>.</span>STUDIO
+</div>
+
+<div class="copyright">
+© 2026 AK.STUDIO — India's AI-Based Film Company
+</div>
+
+<div class="creator">
+Create by Avadhoot Kshirsagar
+</div>
+
+</footer>
+
+
+</body>
+  </html>
