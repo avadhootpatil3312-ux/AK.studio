@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,60 +8,156 @@
     <title>AK Studio | AI Film & Creative Studio</title>
 
     <meta name="description"
-        content="AK Studio - AI powered film and creative studio. Create, explore and experience cinematic stories.">
+        content="AK Studio - AI powered film and creative studio. Where imagination becomes cinema.">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Background -->
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
     <div class="background"></div>
     <div class="background-overlay"></div>
 
-    <!-- NAVBAR -->
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
     <header class="navbar">
 
         <div class="logo">
             AK <span>STUDIO</span>
         </div>
 
-        <nav>
+        <nav class="desktop-nav">
             <a href="#home">Home</a>
             <a href="#films">Films</a>
             <a href="#create">Create</a>
             <a href="#about">About</a>
         </nav>
 
-        <button class="login-btn" onclick="openLogin()">
-            ◯ Login
-        </button>
+        <div class="nav-right">
+
+            <button class="login-btn" onclick="openLogin()">
+                ◯ Login
+            </button>
+
+            <!-- MENU BUTTON -->
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+                ☰
+            </button>
+
+        </div>
 
     </header>
 
 
-    <!-- HERO -->
-    <main id="home">
+    <!-- =========================================
+         SIDEBAR OVERLAY
+    ========================================== -->
 
-        <section class="hero">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            AK <span>STUDIO</span>
+        </div>
+
+
+        <div class="sidebar-links">
+
+            <!-- Visit -->
+
+            <a href="#home" class="sidebar-link">
+                <span class="sidebar-icon">⌂</span>
+                <span>Visit</span>
+            </a>
+
+
+            <!-- Instagram -->
+
+            <a
+                href="https://www.instagram.com/ak.studio123"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="sidebar-link"
+            >
+                <span class="sidebar-icon">◎</span>
+                <span>Instagram</span>
+            </a>
+
+
+            <!-- YouTube -->
+
+            <a
+                href="https://www.youtube.com/@ak.studio_official12"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="sidebar-link"
+            >
+                <span class="sidebar-icon">▶</span>
+                <span>YouTube</span>
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-line"></div>
+
+
+        <div class="sidebar-bottom">
+            © 2026 AK Studio
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =====================================
+             HERO
+        ====================================== -->
+
+        <section id="home" class="hero">
 
             <p class="small-title">
                 WHERE IMAGINATION BECOMES CINEMA.
             </p>
 
+
             <h1>
                 AK <span>STUDIO</span>
             </h1>
 
+
             <p class="hero-description">
-                AI Powered Film & Creative Studio
+                India's AI Powered Film & Creative Studio
             </p>
 
 
-            <!-- ASK AI SEARCH -->
+            <!-- ASK AI -->
+
             <div class="ai-search">
 
-                <span class="search-icon">⌕</span>
+                <span class="search-icon">
+                    ⌕
+                </span>
 
                 <input
                     id="aiInput"
@@ -69,27 +166,40 @@
                     autocomplete="off"
                 >
 
-                <button class="mic-btn" onclick="startVoice()">
+                <button
+                    class="mic-btn"
+                    onclick="startVoice()"
+                    aria-label="Voice input"
+                >
                     🎙️
                 </button>
 
-                <button class="ai-btn" onclick="askAI()">
+
+                <button
+                    class="ai-btn"
+                    onclick="askAI()"
+                    aria-label="Ask AI"
+                >
                     ✦
                 </button>
 
             </div>
 
-            <p id="aiResponse" class="ai-response"></p>
+
+            <!-- AI RESPONSE -->
+
+            <div id="aiResponse" class="ai-response"></div>
 
 
             <!-- CREATOR CARD -->
+
             <div class="creator-card">
 
                 <div class="creator-icon">
                     ◯
                 </div>
 
-                <div>
+                <div class="creator-text">
                     <small>Welcome back,</small>
                     <strong>Creator</strong>
                 </div>
@@ -99,48 +209,92 @@
         </section>
 
 
-        <!-- AI CREATE SECTION -->
+
+        <!-- =====================================
+             CREATE WITH AI
+        ====================================== -->
+
         <section id="create" class="section">
 
             <div class="section-title">
                 ✦ &nbsp; CREATE WITH AI &nbsp; ✦
             </div>
 
+
             <div class="feature-grid">
 
+
+                <!-- AI FILM -->
+
                 <div class="feature-card">
-                    <div class="feature-icon">🎬</div>
-                    <h3>AI Film</h3>
+
+                    <div class="feature-icon">
+                        🎬
+                    </div>
+
+                    <h3>
+                        AI Film
+                    </h3>
+
                     <p>
-                        Create cinematic stories and films using AI.
+                        Create cinematic stories and films
+                        with the power of AI.
                     </p>
+
                     <button onclick="showFeature('AI Film')">
                         Explore
                     </button>
+
                 </div>
 
 
+
+                <!-- AI IMAGE -->
+
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>AI Image</h3>
+
+                    <div class="feature-icon">
+                        🎨
+                    </div>
+
+                    <h3>
+                        AI Image
+                    </h3>
+
                     <p>
-                        Turn your imagination into stunning visuals.
+                        Turn your imagination into
+                        stunning cinematic visuals.
                     </p>
+
                     <button onclick="showFeature('AI Image')">
                         Explore
                     </button>
+
                 </div>
 
 
+
+                <!-- AI STORY -->
+
                 <div class="feature-card">
-                    <div class="feature-icon">✍️</div>
-                    <h3>AI Story</h3>
+
+                    <div class="feature-icon">
+                        ✍️
+                    </div>
+
+                    <h3>
+                        AI Story
+                    </h3>
+
                     <p>
-                        Create characters, stories and cinematic scripts.
+                        Create characters, stories and
+                        cinematic scripts.
                     </p>
+
                     <button onclick="showFeature('AI Story')">
                         Explore
                     </button>
+
                 </div>
 
             </div>
@@ -148,15 +302,27 @@
         </section>
 
 
-        <!-- FILMS SECTION -->
+
+        <!-- =====================================
+             FILMS
+        ====================================== -->
+
         <section id="films" class="section">
 
             <div class="section-heading">
 
                 <div>
-                    <p class="section-label">AK ORIGINALS</p>
-                    <h2>Featured Films</h2>
+
+                    <p class="section-label">
+                        AK ORIGINALS
+                    </p>
+
+                    <h2>
+                        Featured Films
+                    </h2>
+
                 </div>
+
 
                 <button class="view-btn">
                     View All →
@@ -165,45 +331,91 @@
             </div>
 
 
+
             <div class="film-grid">
+
+
+                <!-- FILM 1 -->
 
                 <article class="film-card">
 
                     <div class="film-image film-one">
-                        <span>COMING SOON</span>
+
+                        <span>
+                            COMING SOON
+                        </span>
+
                     </div>
 
+
                     <div class="film-info">
-                        <h3>AK Original — 01</h3>
-                        <p>AI Cinematic Film</p>
+
+                        <h3>
+                            AK Original — 01
+                        </h3>
+
+                        <p>
+                            AI Cinematic Film
+                        </p>
+
                     </div>
 
                 </article>
 
+
+
+                <!-- FILM 2 -->
 
                 <article class="film-card">
 
                     <div class="film-image film-two">
-                        <span>TRAILER</span>
+
+                        <span>
+                            TRAILER
+                        </span>
+
                     </div>
 
+
                     <div class="film-info">
-                        <h3>AK Original — 02</h3>
-                        <p>AI Animated Story</p>
+
+                        <h3>
+                            AK Original — 02
+                        </h3>
+
+                        <p>
+                            AI Animated Story
+                        </p>
+
                     </div>
 
                 </article>
 
 
+
+                <!-- FILM 3 -->
+
                 <article class="film-card">
 
                     <div class="film-image film-three">
-                        <span>IN PRODUCTION</span>
+
+                        <span>
+                            IN PRODUCTION
+                        </span>
+
                     </div>
 
+
                     <div class="film-info">
-                        <h3>AK Original — 03</h3>
-                        <p>Future Project</p>
+
+                        <h3>
+                            AK Original — 03
+                        </h3>
+
+                        <p>
+                            Future Project
+                        </p>
+
                     </div>
 
                 </article>
@@ -213,19 +425,25 @@
         </section>
 
 
-        <!-- ABOUT -->
+
+        <!-- =====================================
+             ABOUT
+        ====================================== -->
+
         <section id="about" class="about-section">
 
-            <p class="section-label">THE STUDIO</p>
+            <p class="section-label">
+                THE STUDIO
+            </p>
 
             <h2>
                 Stories beyond imagination.
             </h2>
 
             <p>
-                AK Studio is building a new generation of cinematic
-                experiences powered by artificial intelligence,
-                creativity and technology.
+                AK Studio is building a new generation of
+                cinematic experiences powered by artificial
+                intelligence, creativity and technology.
             </p>
 
         </section>
@@ -233,20 +451,36 @@
     </main>
 
 
-    <!-- LOGIN MODAL -->
+
+    <!-- =========================================
+         LOGIN MODAL
+    ========================================== -->
+
     <div id="loginModal" class="modal">
 
         <div class="modal-box">
 
-            <button class="close-btn" onclick="closeLogin()">×</button>
+            <h2>
+                Welcome to AK Studio
+            </h2>
 
-            <h2>Welcome to AK Studio</h2>
+            <p>
+                Login system will be connected to the
+                database in the next stage.
+            </p>
 
-            <p>Login feature will be connected to the database later.</p>
 
-            <input type="email" placeholder="Email">
+            <input
+                type="email"
+                placeholder="Email"
+            >
 
-            <input type="password" placeholder="Password">
+
+            <input
+                type="password"
+                placeholder="Password"
+            >
+
 
             <button class="modal-login">
                 Login
@@ -257,25 +491,46 @@
     </div>
 
 
-    <!-- FOOTER -->
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
     <footer>
 
         <div class="footer-logo">
             AK <span>STUDIO</span>
         </div>
 
+
         <p>
-            Where imagination becomes cinema.
+            WHERE IMAGINATION BECOMES CINEMA.
         </p>
 
+
         <div class="footer-links">
-            <a href="#home">Home</a>
-            <a href="#films">Films</a>
-            <a href="#create">Create</a>
-            <a href="#about">About</a>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#films">
+                Films
+            </a>
+
+            <a href="#create">
+                Create
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
         </div>
 
+
         <hr>
+
 
         <p class="copyright">
             © 2026 AK Studio. Created by Avadhoot Kshirsagar.
@@ -284,8 +539,13 @@
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
     <script src="script.js"></script>
 
 </body>
-  </html>
+
+    </html>
