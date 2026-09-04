@@ -1,6 +1,7 @@
-/* ==========================================
-   AK STUDIO — LUXURY CINEMATIC CSS V2
-========================================== */
+/* =========================
+   AK STUDIO
+   MOBILE FIRST DESIGN
+========================= */
 
 * {
     margin: 0;
@@ -13,1265 +14,640 @@ html {
 }
 
 body {
+    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-    background: #06100c;
+    color: white;
     overflow-x: hidden;
+    background: #050909;
 }
 
 
-/* ==========================================
+/* =========================
    BACKGROUND
-========================================== */
+========================= */
 
 .background {
     position: fixed;
     inset: 0;
-    z-index: -3;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1600&q=90");
 
     background-size: cover;
     background-position: center;
 
-    transition:
-        background-image 1.5s ease,
-        transform 1s ease;
+    z-index: -3;
+
+    animation: backgroundZoom 15s ease-in-out infinite alternate;
 }
 
-.background-overlay {
+@keyframes backgroundZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+
+.overlay {
     position: fixed;
     inset: 0;
-    z-index: -2;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0.30),
-            rgba(0, 10, 7, 0.45) 45%,
-            rgba(0, 5, 4, 0.92)
+            rgba(0,0,0,0.45),
+            rgba(0,0,0,0.2) 40%,
+            rgba(0,0,0,0.8)
         );
+
+    z-index: -2;
 }
 
 
-/* ==========================================
+/* =========================
    NAVBAR
-========================================== */
+========================= */
 
 .navbar {
-    position: relative;
+    position: fixed;
 
-    width: calc(100% - 70px);
-    min-height: 78px;
+    top: 16px;
+    left: 14px;
+    right: 14px;
 
-    margin: 25px auto 0;
-    padding: 0 25px;
+    height: 70px;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 24px;
+    padding: 0 14px 0 22px;
 
-    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255,255,255,0.3);
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    border-radius: 38px;
 
-    box-shadow:
-        inset 0 1px 1px rgba(255, 255, 255, 0.20),
-        0 20px 60px rgba(0, 0, 0, 0.25);
+    background: rgba(255,255,255,0.14);
 
-    z-index: 100;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 1000;
 }
 
 
 /* LOGO */
 
-.logo,
-.sidebar-logo,
-.footer-logo {
-    font-weight: 300;
-    letter-spacing: 3px;
+.logo {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+
     white-space: nowrap;
 }
 
-.logo {
-    font-size: 25px;
+.logo span {
+    font-size: 27px;
+    font-weight: 300;
+    letter-spacing: 3px;
 }
 
-.logo span,
-.sidebar-logo span,
-.footer-logo span {
-    font-size: 11px;
-    letter-spacing: 2px;
-    opacity: 0.75;
+.logo small {
+    font-size: 10px;
+    letter-spacing: 3px;
+    opacity: 0.8;
 }
 
 
-/* NAVIGATION */
+/* DESKTOP NAV */
 
 .desktop-nav {
-    display: flex;
-    gap: 35px;
+    display: none;
 }
 
-.desktop-nav a,
-.footer-links a {
+.desktop-nav a {
     color: white;
     text-decoration: none;
-    opacity: 0.78;
-
-    transition: 0.3s ease;
-}
-
-.desktop-nav a:hover,
-.footer-links a:hover {
-    opacity: 1;
-}
-
-
-/* NAV RIGHT */
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 
 /* LOGIN */
 
-.login-btn,
-.menu-btn {
-    border: 1px solid rgba(255, 255, 255, 0.25);
+.login-btn {
+    margin-left: auto;
+
+    height: 52px;
+    padding: 0 19px;
+
+    border-radius: 28px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    background: rgba(255,255,255,0.12);
 
     color: white;
 
-    background: rgba(255, 255, 255, 0.08);
-
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
-}
-
-.login-btn {
-    padding: 12px 20px;
-    border-radius: 16px;
-    font-size: 14px;
-}
-
-.login-btn:hover,
-.menu-btn:hover {
-    background: rgba(255, 255, 255, 0.16);
+    font-size: 15px;
 }
 
 
 /* MENU */
 
 .menu-btn {
-    width: 46px;
-    height: 46px;
+    margin-left: 8px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 45px;
+    height: 45px;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
-    font-size: 22px;
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 21px;
+
+    cursor: pointer;
 }
 
 
-/* ==========================================
+/* =========================
    SIDEBAR
-========================================== */
-
-.sidebar-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.35);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: 0.35s ease;
-
-    z-index: 150;
-}
-
-.sidebar-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
+========================= */
 
 .sidebar {
+
     position: fixed;
 
     top: 0;
-    right: 0;
+    right: -290px;
 
-    width: 330px;
+    width: 270px;
     height: 100vh;
 
-    padding: 35px 28px;
+    padding: 100px 25px 30px;
 
-    display: flex;
-    flex-direction: column;
+    background: rgba(8,15,15,0.88);
 
-    background: rgba(10, 25, 20, 0.72);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
-    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 1px solid rgba(255,255,255,0.2);
 
-    backdrop-filter: blur(35px);
-    -webkit-backdrop-filter: blur(35px);
+    z-index: 2000;
 
-    transform: translateX(100%);
-
-    transition:
-        transform 0.45s cubic-bezier(.2,.8,.2,1);
-
-    z-index: 200;
+    transition: right 0.35s ease;
 }
 
 .sidebar.active {
-    transform: translateX(0);
+    right: 0;
 }
 
 
-.sidebar-logo {
-    font-size: 26px;
+.sidebar-title {
 
-    padding-bottom: 30px;
+    font-size: 24px;
+    letter-spacing: 4px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 45px;
+}
+
+.sidebar-title span {
+    font-size: 12px;
+    opacity: 0.7;
 }
 
 
-.sidebar-links {
+.side-link {
+
     display: flex;
-    flex-direction: column;
 
-    gap: 10px;
-
-    margin-top: 35px;
-}
-
-
-.sidebar-link {
-    display: flex;
     align-items: center;
 
-    gap: 18px;
+    gap: 15px;
 
-    padding: 17px;
+    padding: 17px 10px;
 
-    border-radius: 16px;
+    margin-bottom: 8px;
 
     color: white;
+
     text-decoration: none;
 
-    background: rgba(255, 255, 255, 0.05);
+    font-size: 17px;
 
-    border: 1px solid transparent;
+    border-radius: 12px;
 
-    transition: 0.3s ease;
+    transition: background 0.2s;
 }
 
-.sidebar-link:hover {
-    background: rgba(255, 255, 255, 0.12);
-
-    border-color:
-        rgba(255, 255, 255, 0.16);
-
-    transform: translateX(5px);
-}
-
-
-.sidebar-icon {
-    width: 25px;
-
-    text-align: center;
-
-    font-size: 21px;
+.side-link:hover {
+    background: rgba(255,255,255,0.12);
 }
 
 
 .sidebar-line {
-    width: 100%;
+
     height: 1px;
 
-    margin-top: auto;
-    margin-bottom: 20px;
+    background: rgba(255,255,255,0.2);
 
-    background:
-        rgba(255, 255, 255, 0.15);
+    margin: 35px 0 20px;
 }
 
 
-.sidebar-bottom {
-    font-size: 12px;
-
-    opacity: 0.55;
-
-    text-align: center;
+.copyright {
+    font-size: 13px;
+    opacity: 0.6;
 }
 
 
-/* ==========================================
+/* =========================
    HERO
-========================================== */
+========================= */
 
 .hero {
-    min-height: 620px;
+
+    min-height: 100vh;
 
     display: flex;
-    flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
     text-align: center;
 
-    padding: 70px 20px 40px;
+    padding:
+        120px
+        22px
+        100px;
 }
 
 
-.small-title {
-    color: #ead79a;
-
-    font-size: 13px;
-
-    letter-spacing: 6px;
-
-    margin-bottom: 18px;
+.hero-content {
+    width: 100%;
+    max-width: 700px;
 }
 
+
+/* TITLE */
 
 .hero h1 {
-    font-size: clamp(65px, 10vw, 135px);
 
-    font-weight: 300;
+    font-size: clamp(65px, 18vw, 130px);
 
-    letter-spacing: 5px;
+    font-weight: 200;
 
-    line-height: 0.95;
+    line-height: 0.82;
 
-    text-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.55);
+    letter-spacing: -3px;
+
+    margin-bottom: 35px;
 }
-
 
 .hero h1 span {
-    font-weight: 400;
+    font-weight: 200;
 }
 
 
-.hero-description {
-    margin-top: 25px;
+/* TAGLINE */
 
-    font-size: 18px;
-
-    opacity: 0.85;
-}
-
-
-/* ==========================================
-   ASK AI
-========================================== */
-
-.ai-search {
-    width: min(850px, 92vw);
-    height: 86px;
-
-    margin-top: 35px;
-
-    padding: 0 18px 0 25px;
-
-    display: flex;
-    align-items: center;
-
-    border-radius: 50px;
-
-    border: 1px solid rgba(255, 255, 255, 0.38);
-
-    background:
-        rgba(255, 255, 255, 0.12);
-
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-
-    box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.25),
-        0 25px 70px rgba(0, 0, 0, 0.25);
-}
-
-
-.search-icon {
-    font-size: 35px;
-
-    margin-right: 15px;
-
-    opacity: 0.8;
-}
-
-
-.ai-search input {
-    flex: 1;
-
-    height: 100%;
-
-    border: none;
-    outline: none;
-
-    background: transparent;
-
-    color: white;
-
-    font-size: 16px;
-}
-
-
-.ai-search input::placeholder {
-    color: rgba(255, 255, 255, 0.65);
-}
-
-
-.mic-btn,
-.ai-btn {
-    border: none;
-
-    cursor: pointer;
-
-    color: white;
-
-    background: transparent;
-}
-
-
-.mic-btn {
-    font-size: 20px;
-
-    margin-right: 15px;
-}
-
-
-.ai-btn {
-    width: 56px;
-    height: 56px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
-    background:
-        rgba(255, 255, 255, 0.10);
-
-    color: #f0d68d;
-
-    font-size: 25px;
-
-    transition: 0.3s ease;
-}
-
-
-.ai-btn:hover {
-    transform: scale(1.08);
-
-    background:
-        rgba(255, 255, 255, 0.18);
-}
-
-
-.ai-response {
-    min-height: 20px;
-
-    max-width: 700px;
-
-    margin-top: 15px;
-
-    font-size: 13px;
-
-    color: #ead79a;
-}
-
-
-/* ==========================================
-   CREATOR CARD
-========================================== */
-
-.creator-card {
-    margin-top: 25px;
-
-    padding: 13px 20px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 13px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(0, 0, 0, 0.20);
-
-    border: 1px solid rgba(255, 255, 255, 0.16);
-
-    backdrop-filter: blur(20px);
-}
-
-
-.creator-icon {
-    font-size: 27px;
-
-    color: #ead79a;
-}
-
-
-.creator-text {
-    display: flex;
-    flex-direction: column;
-
-    text-align: left;
-}
-
-
-.creator-text small {
-    opacity: 0.55;
-}
-
-
-.creator-text strong {
-    margin-top: 3px;
-}
-
-
-/* ==========================================
-   GENERAL SECTIONS
-========================================== */
-
-.section {
-    width: calc(100% - 70px);
-
-    max-width: 1400px;
-
-    margin: 60px auto;
-
-    padding: 35px;
-
-    border-radius: 30px;
-
-    background:
-        rgba(0, 20, 15, 0.38);
-
-    border: 1px solid rgba(255, 255, 255, 0.15);
-
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-}
-
-
-.section-title {
-    text-align: center;
-
-    color: #ead79a;
-
-    letter-spacing: 5px;
-
-    font-size: 14px;
-
-    margin-bottom: 30px;
-}
-
-
-/* ==========================================
-   AI FEATURE CARDS
-========================================== */
-
-.feature-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-
-.feature-card {
-    padding: 28px;
-
-    min-height: 210px;
-
-    border-radius: 22px;
-
-    background:
-        rgba(255, 255, 255, 0.07);
-
-    border: 1px solid
-        rgba(255, 255, 255, 0.15);
-
-    transition: 0.35s ease;
-}
-
-
-.feature-card:hover {
-    transform: translateY(-7px);
-
-    background:
-        rgba(255, 255, 255, 0.11);
-}
-
-
-.feature-icon {
-    font-size: 35px;
-
-    margin-bottom: 15px;
-}
-
-
-.feature-card h3 {
-    margin-bottom: 10px;
-}
-
-
-.feature-card p {
-    line-height: 1.6;
-
-    opacity: 0.65;
-
-    font-size: 14px;
-}
-
-
-.feature-card button {
-    margin-top: 20px;
-
-    padding: 10px 18px;
-
-    border-radius: 12px;
-
-    border: 1px solid
-        rgba(255, 255, 255, 0.20);
-
-    background:
-        rgba(255, 255, 255, 0.08);
-
-    color: white;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
-   FILMS
-========================================== */
-
-.section-heading {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 30px;
-}
-
-
-.section-label {
-    color: #ead79a;
-
-    letter-spacing: 4px;
+.tagline {
 
     font-size: 11px;
 
-    margin-bottom: 8px;
-}
+    letter-spacing: 4px;
 
-
-.section-heading h2 {
-    font-size: 32px;
-
-    font-weight: 400;
-}
-
-
-.view-btn {
-    padding: 12px 18px;
-
-    border-radius: 14px;
-
-    border: 1px solid
-        rgba(255, 255, 255, 0.18);
-
-    color: white;
-
-    background:
-        rgba(255, 255, 255, 0.07);
-
-    cursor: pointer;
-}
-
-
-.film-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 22px;
-}
-
-
-.film-card {
-    overflow: hidden;
-
-    border-radius: 22px;
-
-    background:
-        rgba(255, 255, 255, 0.07);
-
-    border: 1px solid
-        rgba(255, 255, 255, 0.15);
-
-    cursor: pointer;
-
-    transition: 0.35s ease;
-}
-
-
-.film-card:hover {
-    transform: translateY(-6px);
-}
-
-
-.film-image {
-    height: 330px;
-
-    background-size: cover;
-
-    background-position: center;
-
-    position: relative;
-
-    display: flex;
-
-    align-items: flex-end;
-
-    padding: 18px;
-}
-
-
-.film-image span {
-    padding: 7px 12px;
-
-    border-radius: 10px;
-
-    background:
-        rgba(0, 0, 0, 0.55);
-
-    backdrop-filter: blur(10px);
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-}
-
-
-.film-one {
-    background-image:
-        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85");
-}
-
-
-.film-two {
-    background-image:
-        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85");
-}
-
-
-.film-three {
-    background-image:
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85");
-}
-
-
-.film-info {
-    padding: 18px;
-}
-
-
-.film-info h3 {
-    font-size: 17px;
-
-    margin-bottom: 6px;
-}
-
-
-.film-info p {
-    font-size: 13px;
-
-    opacity: 0.55;
-}
-
-
-/* ==========================================
-   ABOUT
-========================================== */
-
-.about-section {
-    max-width: 850px;
-
-    margin: 100px auto;
-
-    padding: 30px;
-
-    text-align: center;
-}
-
-
-.about-section h2 {
-    font-size: clamp(35px, 6vw, 65px);
-
-    font-weight: 300;
-
-    margin: 20px 0;
-}
-
-
-.about-section > p:last-child {
-    line-height: 1.8;
-
-    opacity: 0.65;
-}
-
-
-/* ==========================================
-   LOGIN MODAL
-========================================== */
-
-.modal {
-    position: fixed;
-
-    inset: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(0, 0, 0, 0.65);
-
-    backdrop-filter: blur(12px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transition: 0.3s;
-
-    z-index: 500;
-}
-
-
-.modal.active {
-    opacity: 1;
-
-    visibility: visible;
-}
-
-
-.modal-box {
-    width: min(430px, 92vw);
-
-    padding: 35px;
-
-    border-radius: 25px;
-
-    text-align: center;
-
-    background:
-        rgba(15, 30, 25, 0.90);
-
-    border: 1px solid
-        rgba(255, 255, 255, 0.18);
-
-    backdrop-filter: blur(30px);
-}
-
-
-.modal-box h2 {
-    margin-bottom: 12px;
-}
-
-
-.modal-box p {
-    opacity: 0.6;
-
-    font-size: 13px;
-
-    line-height: 1.6;
+    color: #e8d58c;
 
     margin-bottom: 25px;
 }
 
 
-.modal-box input {
-    width: 100%;
+/* DESCRIPTION */
 
-    padding: 14px;
+.description {
 
-    margin-bottom: 12px;
+    font-size: 21px;
 
-    border-radius: 12px;
+    line-height: 1.4;
 
-    border: 1px solid
-        rgba(255, 255, 255, 0.15);
+    margin-bottom: 35px;
 
-    background:
-        rgba(255, 255, 255, 0.07);
-
-    color: white;
-
-    outline: none;
+    font-weight: 500;
 }
 
 
-.modal-login {
+/* =========================
+   AI SEARCH
+========================= */
+
+.ai-search {
+
     width: 100%;
 
-    padding: 14px;
+    min-height: 64px;
 
-    border-radius: 12px;
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 7px 8px 7px 17px;
+
+    border-radius: 40px;
+
+    border: 1px solid rgba(255,255,255,0.45);
+
+    background: rgba(20,20,20,0.42);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.25);
+}
+
+
+.search-icon {
+    font-size: 27px;
+}
+
+
+.ai-search input {
+
+    min-width: 0;
+
+    flex: 1;
+
+    background: transparent;
 
     border: none;
 
-    background:
-        rgba(255, 255, 255, 0.16);
+    outline: none;
 
     color: white;
+
+    font-size: 15px;
+}
+
+.ai-search input::placeholder {
+    color: rgba(255,255,255,0.75);
+}
+
+
+.mic {
+    font-size: 16px;
+}
+
+
+.ask-btn {
+
+    flex-shrink: 0;
+
+    width: 49px;
+    height: 49px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.5);
+
+    background: rgba(255,255,255,0.08);
+
+    color: #f5df88;
+
+    font-size: 24px;
 
     cursor: pointer;
 }
 
 
-/* ==========================================
-   FOOTER
-========================================== */
+.ai-response {
 
-footer {
-    width: calc(100% - 70px);
+    min-height: 24px;
 
-    margin: 80px auto 25px;
+    margin-top: 15px;
 
-    padding: 30px;
+    font-size: 14px;
 
-    text-align: center;
+    opacity: 0.9;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-card {
+
+    width: calc(100% - 45px);
+
+    max-width: 360px;
+
+    margin:
+        -70px
+        auto
+        60px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
 
     border-radius: 25px;
 
-    background:
-        rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255,255,255,0.25);
 
-    border: 1px solid
-        rgba(255, 255, 255, 0.14);
+    background: rgba(0,0,0,0.35);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
 }
 
 
-footer > p {
-    margin: 15px 0;
+.creator-circle {
 
-    opacity: 0.6;
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    border: 2px solid #eadb91;
+}
+
+
+.welcome-card span {
+
+    display: block;
+
+    font-size: 14px;
+
+    opacity: 0.8;
+
+    margin-bottom: 5px;
+}
+
+
+.welcome-card strong {
+    font-size: 20px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section-card {
+
+    width: calc(100% - 30px);
+
+    max-width: 900px;
+
+    margin: 30px auto;
+
+    padding: 45px 25px;
+
+    text-align: center;
+
+    border-radius: 28px;
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    background: rgba(4,10,10,0.58);
+
+    backdrop-filter: blur(15px);
+}
+
+
+.section-card h2 {
+
+    font-size: 22px;
+
+    letter-spacing: 3px;
+
+    color: #eadb91;
+
+    margin-bottom: 18px;
+}
+
+
+.section-card p {
+
+    line-height: 1.7;
+
+    opacity: 0.85;
+}
+
+
+.section-card button {
+
+    margin-top: 25px;
+
+    padding: 13px 25px;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background: rgba(255,255,255,0.1);
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+/* FILM */
+
+.film-placeholder {
+
+    margin-top: 25px;
+
+    padding: 45px 15px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px dashed rgba(255,255,255,0.25);
+}
+
+.film-placeholder span {
+    font-size: 40px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 45px 20px;
 
     font-size: 13px;
+
+    opacity: 0.65;
+
+    line-height: 1.8;
 }
 
 
-.footer-logo {
-    font-size: 25px;
-}
+/* =========================
+   TABLET / DESKTOP
+========================= */
 
-
-.footer-links {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 25px;
-
-    margin: 20px 0;
-}
-
-
-footer hr {
-    border: none;
-
-    height: 1px;
-
-    background:
-        rgba(255, 255, 255, 0.12);
-
-    margin: 20px 0;
-}
-
-
-.copyright {
-    font-size: 11px;
-
-    opacity: 0.45;
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 800px) {
+@media (min-width: 768px) {
 
     .navbar {
-        width: calc(100% - 25px);
-
-        min-height: 65px;
-
-        margin-top: 13px;
-
-        padding: 0 14px;
-
-        border-radius: 20px;
+        left: 35px;
+        right: 35px;
+        height: 86px;
     }
-
-
-    .logo {
-        font-size: 20px;
-    }
-
-
-    .logo span {
-        font-size: 9px;
-    }
-
 
     .desktop-nav {
-        display: none;
+
+        display: flex;
+
+        gap: 28px;
+
+        margin-left: auto;
+        margin-right: 25px;
     }
 
-
-    .login-btn {
-        padding: 9px 13px;
-
-        font-size: 12px;
-    }
-
-
-    .menu-btn {
-        width: 40px;
-        height: 40px;
-
-        font-size: 19px;
-    }
-
-
-    .sidebar {
-        width: min(310px, 85vw);
-
-        padding: 28px 20px;
-    }
-
-
-    .hero {
-        min-height: 570px;
-
-        padding-top: 55px;
-    }
-
-
-    .small-title {
-        font-size: 9px;
-
-        letter-spacing: 3px;
-    }
-
-
-    .hero h1 {
-        font-size: 58px;
-
-        letter-spacing: 2px;
-    }
-
-
-    .hero-description {
-        font-size: 14px;
-    }
-
-
-    .ai-search {
-        height: 70px;
-
-        padding-left: 18px;
-    }
-
-
-    .search-icon {
-        font-size: 28px;
-
-        margin-right: 8px;
-    }
-
-
-    .ai-search input {
-        font-size: 12px;
-
-        min-width: 0;
-    }
-
-
-    .mic-btn {
-        font-size: 17px;
-
-        margin-right: 7px;
-    }
-
-
-    .ai-btn {
-        width: 45px;
-        height: 45px;
-
-        font-size: 20px;
-    }
-
-
-    .section {
-        width: calc(100% - 25px);
-
-        padding: 20px 14px;
-
-        border-radius: 23px;
-    }
-
-
-    .feature-grid {
-        grid-template-columns: 1fr 1fr;
-
-        gap: 10px;
-    }
-
-
-    .feature-card {
-        min-height: 210px;
-
-        padding: 17px;
-    }
-
-
-    .feature-icon {
-        font-size: 28px;
-    }
-
-
-    .feature-card h3 {
+    .desktop-nav a {
         font-size: 15px;
     }
 
-
-    .feature-card p {
-        font-size: 11px;
+    .menu-btn {
+        display: block;
     }
 
-
-    .feature-card button {
-        padding: 8px 12px;
-
-        font-size: 11px;
+    .hero {
+        padding-top: 150px;
     }
 
-
-    .section-heading {
-        align-items: flex-start;
-
-        gap: 15px;
+    .description {
+        font-size: 24px;
     }
 
-
-    .section-heading h2 {
-        font-size: 25px;
+    .ai-search {
+        min-height: 72px;
     }
 
-
-    .view-btn {
-        font-size: 11px;
-
-        padding: 9px 12px;
-    }
-
-
-    .film-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .film-image {
-        height: 300px;
-    }
-
-
-    .about-section {
-        margin: 60px auto;
-
-        padding: 20px;
-    }
-
-
-    .about-section h2 {
-        font-size: 40px;
-    }
-
-
-    footer {
-        width: calc(100% - 25px);
-
-        padding: 25px 15px;
-    }
-
-
-    .footer-links {
-        gap: 15px;
-
-        flex-wrap: wrap;
+    .ai-search input {
+        font-size: 17px;
     }
 
 }
-
-
-/* ==========================================
-   SMALL PHONES
-========================================== */
-
-@media (max-width: 420px) {
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .hero h1 {
-        font-size: 50px;
-    }
-
-
-    .ai-search {
-        width: 94vw;
-    }
-
-  }
