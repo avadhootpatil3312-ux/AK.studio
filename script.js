@@ -1,181 +1,520 @@
 // ==========================================
-// AK STUDIO — HOMEPAGE V1
+// AK STUDIO — HOMEPAGE JAVASCRIPT V2
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ------------------------------------------
-  // 1. DYNAMIC NATURE BACKGROUND
-  // ------------------------------------------
+    // ==========================================
+    // NATURE BACKGROUND
+    // ==========================================
 
-  const background = document.querySelector(".background");
+    const background = document.querySelector(".background");
 
-  const natureScenes = [
-    "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=2400&q=90",
-    "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=2400&q=90",
-    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=90",
-    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=90",
-    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2400&q=90"
-  ];
+    const natureScenes = [
+        "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=2400&q=90",
+        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=2400&q=90",
+        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=90",
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=90",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2400&q=90"
+    ];
 
-  let visitNumber = Number(localStorage.getItem("akStudioVisit")) || 0;
+    if (background) {
 
-  const sceneIndex = visitNumber % natureScenes.length;
+        let savedScene =
+            localStorage.getItem("akStudioNatureScene");
 
-  background.style.backgroundImage =
-    `url("${natureScenes[sceneIndex]}")`;
+        let sceneIndex =
+            savedScene !== null
+                ? Number(savedScene)
+                : 0;
 
-  localStorage.setItem("akStudioVisit", visitNumber + 1);
+        if (
+            sceneIndex < 0 ||
+            sceneIndex >= natureScenes.length
+        ) {
+            sceneIndex = 0;
+        }
+
+        background.style.backgroundImage =
+            `url("${natureScenes[sceneIndex]}")`;
+
+        // Prepare different image for next visit
+        const nextScene =
+            (sceneIndex + 1) % natureScenes.length;
+
+        localStorage.setItem(
+            "akStudioNatureScene",
+            nextScene
+        );
+    }
 
 
-  // ------------------------------------------
-  // 2. HERO FADE-IN ANIMATION
-  // ------------------------------------------
+    // ==========================================
+    // SIDEBAR
+    // ==========================================
 
-  const hero = document.querySelector(".hero");
+    const menuBtn =
+        document.getElementById("menuBtn");
 
-  if (hero) {
-    hero.style.opacity = "0";
-    hero.style.transform = "translateY(20px)";
-    hero.style.transition = "opacity 1.2s ease, transform 1.2s ease";
+    const sidebar =
+        document.getElementById("sidebar");
 
-    setTimeout(() => {
-      hero.style.opacity = "1";
-      hero.style.transform = "translateY(0)";
-    }, 300);
-  }
+    const sidebarOverlay =
+        document.getElementById("sidebarOverlay");
 
 
-  // ------------------------------------------
-  // 3. AI SEARCH BAR
-  // ------------------------------------------
+    function openSidebar() {
 
-  const searchBox = document.querySelector(".search-box");
+        if (!sidebar || !sidebarOverlay) return;
 
-  if (searchBox) {
+        sidebar.classList.add("active");
+        sidebarOverlay.classList.add("active");
 
-    searchBox.addEventListener("click", () => {
+        document.body.classList.add("menu-open");
+    }
 
-      const request = prompt(
-        "What do you want to create today?"
-      );
 
-      if (request && request.trim() !== "") {
+    function closeSidebar() {
 
-        alert(
-          "AK Studio AI\n\nYour request:\n" +
-          request +
-          "\n\nAI creation system coming soon."
+        if (!sidebar || !sidebarOverlay) return;
+
+        sidebar.classList.remove("active");
+        sidebarOverlay.classList.remove("active");
+
+        document.body.classList.remove("menu-open");
+    }
+
+
+    // Open menu
+
+    if (menuBtn) {
+
+        menuBtn.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                if (
+                    sidebar &&
+                    sidebar.classList.contains("active")
+                ) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+
+            }
         );
 
-      }
-
-    });
-
-  }
+    }
 
 
-  // ------------------------------------------
-  // 4. AI FEATURE CARDS
-  // ------------------------------------------
+    // Close when clicking outside
 
-  const aiCards = document.querySelectorAll(".ai-card");
+    if (sidebarOverlay) {
 
-  aiCards.forEach((card) => {
-
-    card.addEventListener("click", () => {
-
-      const title = card.querySelector("h4");
-
-      if (title) {
-
-        alert(
-          "AK Studio\n\n" +
-          title.textContent +
-          "\n\nThis creative tool will be available soon."
+        sidebarOverlay.addEventListener(
+            "click",
+            closeSidebar
         );
 
-      }
-
-    });
-
-  });
+    }
 
 
-  // ------------------------------------------
-  // 5. LOGIN BUTTON
-  // ------------------------------------------
+    // Close after selecting sidebar option
 
-  const loginButton = document.querySelector(".login-btn");
+    const sidebarLinks =
+        document.querySelectorAll(".sidebar-link");
 
-  if (loginButton) {
+    sidebarLinks.forEach(link => {
 
-    loginButton.addEventListener("click", () => {
-
-      alert(
-        "AK Studio Login\n\n" +
-        "Login system will be connected in the next development phase."
-      );
-
-    });
-
-  }
-
-
-  // ------------------------------------------
-  // 6. PROJECT CARD INTERACTION
-  // ------------------------------------------
-
-  const projectCards = document.querySelectorAll(".project-card");
-
-  projectCards.forEach((card) => {
-
-    card.addEventListener("click", () => {
-
-      const title = card.querySelector("h4");
-
-      if (title) {
-
-        alert(
-          "AK Studio Project\n\n" +
-          title.textContent +
-          "\n\nProject details coming soon."
+        link.addEventListener(
+            "click",
+            closeSidebar
         );
 
-      }
+    });
+
+
+    // ==========================================
+    // ASK AI
+    // ==========================================
+
+    const aiInput =
+        document.getElementById("aiInput");
+
+    const aiResponse =
+        document.getElementById("aiResponse");
+
+
+    window.askAI = function () {
+
+        if (!aiInput) return;
+
+        const question =
+            aiInput.value.trim();
+
+
+        if (question === "") {
+
+            aiInput.focus();
+
+            if (aiResponse) {
+                aiResponse.textContent =
+                    "Ask me anything about creating films, stories or visuals.";
+            }
+
+            return;
+        }
+
+
+        if (aiResponse) {
+
+            aiResponse.textContent =
+                "AK Studio AI: Your AI assistant will be connected to the secure AI backend soon.";
+
+        }
+
+    };
+
+
+    // Enter key for Ask AI
+
+    if (aiInput) {
+
+        aiInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    window.askAI();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // AI FEATURE BUTTONS
+    // ==========================================
+
+    window.showFeature = function (featureName) {
+
+        if (aiResponse) {
+
+            aiResponse.textContent =
+                `${featureName} is coming soon to AK Studio.`;
+
+            aiResponse.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+    };
+
+
+    // ==========================================
+    // LOGIN MODAL
+    // ==========================================
+
+    const loginModal =
+        document.getElementById("loginModal");
+
+
+    window.openLogin = function () {
+
+        if (!loginModal) return;
+
+        loginModal.classList.add("active");
+
+    };
+
+
+    function closeLogin() {
+
+        if (!loginModal) return;
+
+        loginModal.classList.remove("active");
+
+    }
+
+
+    // Close login by clicking outside
+
+    if (loginModal) {
+
+        loginModal.addEventListener(
+            "click",
+            event => {
+
+                if (event.target === loginModal) {
+                    closeLogin();
+                }
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // LOGIN BUTTON
+    // ==========================================
+
+    const modalLogin =
+        document.querySelector(".modal-login");
+
+
+    if (modalLogin) {
+
+        modalLogin.addEventListener(
+            "click",
+            () => {
+
+                alert(
+                    "AK Studio Login\n\nThe real login system will be connected to the database in the backend stage."
+                );
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // MOBILE / DESKTOP NAVIGATION
+    // ==========================================
+
+    const navLinks =
+        document.querySelectorAll(
+            ".desktop-nav a, .footer-links a"
+        );
+
+
+    navLinks.forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const targetID =
+                    link.getAttribute("href");
+
+                if (
+                    targetID &&
+                    targetID.startsWith("#")
+                ) {
+
+                    const target =
+                        document.querySelector(targetID);
+
+                    if (target) {
+
+                        event.preventDefault();
+
+                        target.scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                    }
+
+                }
+
+            }
+        );
 
     });
 
-  });
+
+    // ==========================================
+    // VOICE INPUT
+    // ==========================================
+
+    window.startVoice = function () {
+
+        if (!aiInput) return;
 
 
-  // ------------------------------------------
-  // 7. NAVIGATION ACTIVE EFFECT
-  // ------------------------------------------
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
 
-  const navLinks = document.querySelectorAll(".nav-links a");
 
-  navLinks.forEach((link) => {
+        if (!SpeechRecognition) {
 
-    link.addEventListener("click", () => {
+            alert(
+                "Voice input is not supported by this browser."
+            );
 
-      navLinks.forEach((item) => {
-        item.style.opacity = "0.7";
-      });
+            return;
+        }
 
-      link.style.opacity = "1";
+
+        const recognition =
+            new SpeechRecognition();
+
+
+        recognition.lang = "en-IN";
+
+        recognition.interimResults = false;
+
+        recognition.maxAlternatives = 1;
+
+
+        recognition.start();
+
+
+        recognition.onresult =
+            event => {
+
+                const transcript =
+                    event.results[0][0].transcript;
+
+                aiInput.value =
+                    transcript;
+
+            };
+
+
+        recognition.onerror =
+            () => {
+
+                console.log(
+                    "Voice input could not be completed."
+                );
+
+            };
+
+    };
+
+
+    // ==========================================
+    // FILM CARD INTERACTION
+    // ==========================================
+
+    const filmCards =
+        document.querySelectorAll(".film-card");
+
+
+    filmCards.forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const title =
+                    card.querySelector("h3");
+
+
+                if (title) {
+
+                    alert(
+                        `${title.textContent}\n\nTrailer / movie player will be connected here.`
+                    );
+
+                }
+
+            }
+        );
 
     });
 
-  });
+
+    // ==========================================
+    // VIEW ALL
+    // ==========================================
+
+    const viewButton =
+        document.querySelector(".view-btn");
 
 
-  // ------------------------------------------
-  // 8. CONSOLE MESSAGE
-  // ------------------------------------------
+    if (viewButton) {
 
-  console.log(
-    "🎬 AK Studio Homepage V1 loaded successfully."
-  );
+        viewButton.addEventListener(
+            "click",
+            () => {
+
+                const films =
+                    document.getElementById("films");
+
+                if (films) {
+
+                    films.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // ESCAPE KEY
+    // ==========================================
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key === "Escape") {
+
+                closeSidebar();
+                closeLogin();
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // HERO ANIMATION
+    // ==========================================
+
+    const hero =
+        document.querySelector(".hero");
+
+
+    if (hero) {
+
+        hero.style.opacity = "0";
+        hero.style.transform =
+            "translateY(20px)";
+
+        hero.style.transition =
+            "opacity 1s ease, transform 1s ease";
+
+
+        setTimeout(() => {
+
+            hero.style.opacity = "1";
+
+            hero.style.transform =
+                "translateY(0)";
+
+        }, 200);
+
+    }
+
+
+    // ==========================================
+    // CONSOLE
+    // ==========================================
+
+    console.log(
+        "🎬 AK Studio V2 loaded successfully."
+    );
 
 });
