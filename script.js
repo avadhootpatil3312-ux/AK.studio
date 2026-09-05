@@ -1,74 +1,59 @@
-/* =========================
-   AK STUDIO JAVASCRIPT
-========================= */
+/* =========================================
+   AK STUDIO - MAIN JAVASCRIPT
+   ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-
-    /* =========================
+    /* =========================================
        SIDEBAR
-    ========================= */
+       ========================================= */
 
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
 
-    menuBtn.addEventListener("click", function (event) {
+    if (menuBtn && sidebar) {
 
-        event.stopPropagation();
+        // Open / close sidebar
+        menuBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            sidebar.classList.toggle("active");
+        });
 
-        sidebar.classList.toggle("active");
+        // Close sidebar when clicking anywhere outside
+        document.addEventListener("click", (event) => {
 
-    });
-
-
-    /*
-       Close sidebar whenever the user
-       clicks anywhere outside the sidebar
-    */
-
-    document.addEventListener("click", function (event) {
-
-        if (
-            sidebar.classList.contains("active") &&
-            !sidebar.contains(event.target) &&
-            event.target !== menuBtn
-        ) {
-
-            sidebar.classList.remove("active");
-
-        }
-
-    });
-
-
-    /*
-       Close sidebar after clicking
-       one of its links
-    */
-
-    const sidebarLinks =
-        document.querySelectorAll(".side-link");
-
-    sidebarLinks.forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            sidebar.classList.remove("active");
+            if (
+                sidebar.classList.contains("active") &&
+                !sidebar.contains(event.target) &&
+                event.target !== menuBtn
+            ) {
+                sidebar.classList.remove("active");
+            }
 
         });
 
-    });
+        // Close sidebar after clicking a sidebar link
+        const sidebarLinks = document.querySelectorAll(".side-link");
+
+        sidebarLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                sidebar.classList.remove("active");
+            });
+        });
+    }
 
 
-    /* =========================
+    /* =========================================
        ASK AI
-    ========================= */
+       ========================================= */
 
     const askBtn = document.getElementById("askBtn");
     const aiInput = document.getElementById("aiInput");
     const aiResponse = document.getElementById("aiResponse");
 
     function askAI() {
+
+        if (!aiInput || !aiResponse) return;
 
         const question = aiInput.value.trim();
 
@@ -78,65 +63,64 @@ document.addEventListener("DOMContentLoaded", function () {
                 "✨ Tell AK AI what you want to create.";
 
             return;
-
         }
 
         aiResponse.textContent =
-            "✨ AK AI is preparing your creative idea...";
+            "✨ AK AI is thinking...";
 
-        /*
-          This is currently a frontend demo.
-
-          Later we will connect this button
-          to your real AI backend/API.
-        */
-
-        setTimeout(function () {
+        // Frontend demo response
+        setTimeout(() => {
 
             aiResponse.textContent =
                 "🎬 Your idea: " + question;
 
-        }, 1000);
+        }, 800);
+    }
 
+    if (askBtn) {
+        askBtn.addEventListener("click", askAI);
+    }
+
+    if (aiInput) {
+
+        aiInput.addEventListener("keydown", (event) => {
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                askAI();
+            }
+
+        });
     }
 
 
-    askBtn.addEventListener("click", askAI);
-
-
-    aiInput.addEventListener("keydown", function (event) {
-
-        if (event.key === "Enter") {
-
-            askAI();
-
-        }
-
-    });
-
-
-    /* =========================
-       CREATE BUTTON
-    ========================= */
+    /* =========================================
+       START CREATING BUTTON
+       ========================================= */
 
     const startCreating =
         document.getElementById("startCreating");
 
-    startCreating.addEventListener("click", function () {
+    if (startCreating) {
 
-        aiInput.focus();
+        startCreating.addEventListener("click", () => {
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+            if (aiInput) {
+                aiInput.focus();
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
         });
+    }
 
-    });
 
-
-    /* =========================
-       BACKGROUND IMAGE ROTATION
-    ========================= */
+    /* =========================================
+       BACKGROUND IMAGE SLIDER
+       ========================================= */
 
     const backgrounds = [
 
@@ -150,24 +134,113 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ];
 
-    let currentBackground = 0;
-
     const background =
         document.querySelector(".background");
 
+    let currentBackground = 0;
 
-    setInterval(function () {
+    if (background && backgrounds.length > 0) {
 
-        currentBackground++;
-
-        if (currentBackground >= backgrounds.length) {
-            currentBackground = 0;
-        }
-
+        // First background
         background.style.backgroundImage =
-            `url("${backgrounds[currentBackground]}")`;
+            `url("${backgrounds[0]}")`;
 
-    }, 8000);
+        // Change background every 8 seconds
+        setInterval(() => {
 
+            currentBackground++;
+
+            if (currentBackground >= backgrounds.length) {
+                currentBackground = 0;
+            }
+
+            background.style.backgroundImage =
+                `url("${backgrounds[currentBackground]}")`;
+
+        }, 8000);
+    }
+
+
+    /* =========================================
+       SMOOTH NAVIGATION
+       ========================================= */
+
+    const navLinks =
+        document.querySelectorAll(
+            'a[href^="#"]'
+        );
+
+    navLinks.forEach((link) => {
+
+        link.addEventListener("click", (event) => {
+
+            const targetId =
+                link.getAttribute("href");
+
+            if (!targetId || targetId === "#") {
+                return;
+            }
+
+            const target =
+                document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================================
+       LOGIN BUTTON
+       ========================================= */
+
+    const loginBtn =
+        document.querySelector(".login-btn");
+
+    if (loginBtn) {
+
+        loginBtn.addEventListener("click", () => {
+
+            alert(
+                "🔐 AK Studio Login\n\nLogin system will be connected to the backend soon."
+            );
+
+        });
+
+    }
+
+
+    /* =========================================
+       PREVENT EMPTY SEARCH SUBMISSION
+       ========================================= */
+
+    if (aiInput) {
+
+        aiInput.addEventListener("input", () => {
+
+            if (aiResponse && aiInput.value.trim() === "") {
+                aiResponse.textContent = "";
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
+       PAGE LOADED
+       ========================================= */
+
+    console.log("AK Studio loaded successfully 🎬");
 
 });
